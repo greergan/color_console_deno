@@ -21,15 +21,6 @@ class SlimLogMessage extends Error {
 				this.line_number = location_array[3] || "";
 			}
 		}
-		if(window.configuration?.logging) {
-			this.configuration = window.configuration.logging;
-		}
- 		if(window.configuration?.logging.delimiter != undefined) {
-			this.configuration.delimiter = window.configuration.logging.delimiter;
-		}
-		if(window.configuration?.logging.print_with_file_name != undefined) {
-			this.configuration.print_with_file_name = window.configuration.logging.print_with_file_name;
-		}
 		let message_found:boolean = false;
 		for(let arg of args[0]) {
 			if(!message_found && typeof arg == 'object') {

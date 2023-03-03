@@ -1,2 +1,2 @@
-# slim.logging
-A Typescript logging module
+# color_console_deno
+A colorized console for [Deno](https://deno.land/)

@@ -1,5 +1,5 @@
 import { blue as b, brightGreen as brg, green as g, magenta as m, red as r, yellow as y, bold } from "./deps.ts"
-class SlimLogMessage extends Error {
+class LogMessage extends Error {
 	call:string = "";
 	calling_class:string = "";
 	calling_file:string = "";
@@ -52,35 +52,35 @@ class SlimLogMessage extends Error {
 				`${this.calling_class}${this.configuration.delimiter}${this.line_number}`;
 	}
 }
-export class debug extends SlimLogMessage {
+export class debug extends LogMessage {
 	constructor(...args:any) {
 		super(args);
 		this.name = "DEBUG";
 		Deno.stderr.write(new TextEncoder().encode(`${y(this.name)} ${g(this.call)} ${this.message} ${bold(this.value)} ${brg(this.object_string)}\n`));
 	}
 }
-export class error extends SlimLogMessage {
+export class error extends LogMessage {
 	constructor(...args:any) {
 		super(args);
 		this.name = "ERROR";
 		Deno.stderr.write(new TextEncoder().encode(`${r(this.name)} ${g(this.call)} ${this.message} ${bold(this.value)} ${brg(this.object_string)}\n`));
 	}
 }
-export class todo extends SlimLogMessage {
+export class todo extends LogMessage {
 	constructor(...args:any) {
 		super(args);
 		this.name = "TODO";
 		Deno.stderr.write(new TextEncoder().encode(`${b(this.name)} ${g(this.call)} ${this.message} ${bold(this.value)} ${brg(this.object_string)}\n`));
 	}
 }
-export class trace extends SlimLogMessage {
+export class trace extends LogMessage {
 	constructor(...args:any) {
 		super(args);
 		this.name = "TRACE";
 		Deno.stderr.write(new TextEncoder().encode(`${m(this.name)} ${g(this.call)} ${this.message} ${bold(this.value)} ${brg(this.object_string)}\n`));
 	}
 }
-export class raw extends SlimLogMessage {
+export class raw extends LogMessage {
 	constructor(...args:any) {
 		super(args);
 		this.name = "TRACE";

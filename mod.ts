@@ -1,2 +1,2 @@
-export * from 'console.ts";
-export * from 'deps.ts";
+export * from './console.ts";
+export * from './deps.ts";

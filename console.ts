@@ -80,10 +80,3 @@ export class trace extends LogMessage {
 		Deno.stderr.write(new TextEncoder().encode(`${m(this.name)} ${g(this.call)} ${this.message} ${bold(this.value)} ${brg(this.object_string)}\n`));
 	}
 }
-export class raw extends LogMessage {
-	constructor(...args:any) {
-		super(args);
-		this.name = "TRACE";
-		Deno.stderr.write(new TextEncoder().encode(`${m(this.name)} ${g(this.calling_class + " " + this.line_number)} ${this.message} ${brg(this.object_string)}\n`));
-	}
-}

@@ -1,1 +1,1 @@
-export * from './console.ts";
+export * from './console.ts';

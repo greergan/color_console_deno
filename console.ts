@@ -1,4 +1,4 @@
-import { blue as b, brightGreen as brg, green as g, magenta as m, red as r, yellow as y, bold } from "./deps.ts"
+import { blue as b, brightGreen as brg, green as g, magenta as m, red as r, yellow as y, bold, brightWhite as bw} from "./deps.ts"
 class LogMessage extends Error {
 	call:string = "";
 	calling_class:string = "";
@@ -50,6 +50,14 @@ class LogMessage extends Error {
 		this.call = (this.configuration.print_with_file_name) ?
 			`${this.calling_file}${this.configuration.delimiter}${this.calling_class}${this.configuration.delimiter}${this.line_number}` :
 				`${this.calling_class}${this.configuration.delimiter}${this.line_number}`;
+	}
+}
+export class abort extends LogMessage {
+	constructor(...args:any) {
+		super(args);
+		this.name = "ABORT";
+		Deno.stderr.write(new TextEncoder().encode(`${bw(this.name)} ${bw(this.call)} ${bw(this.message)} ${bw(this.value)} ${bw(this.object_string)}\n`));
+		Deno.exit(1);
 	}
 }
 export class debug extends LogMessage {
